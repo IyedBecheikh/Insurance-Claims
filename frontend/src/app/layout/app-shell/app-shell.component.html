@@ -1,0 +1,44 @@
+<mat-drawer-container class="shell-container">
+  <mat-drawer class="shell-drawer" mode="side" opened>
+    <div class="brand-block">
+      <span class="brand-kicker">Insurance Claims</span>
+      <strong>Operations Console</strong>
+      <span class="brand-copy">Claims, contracts, and users in one workflow surface.</span>
+    </div>
+
+    <mat-nav-list>
+      <a
+        mat-list-item
+        *ngFor="let item of visibleItems"
+        [routerLink]="item.route"
+        routerLinkActive="active-link"
+      >
+        <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+        <span matListItemTitle>{{ item.label }}</span>
+      </a>
+    </mat-nav-list>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <mat-toolbar class="shell-toolbar">
+      <div class="toolbar-copy">
+        <span class="eyebrow">Role</span>
+        <strong>{{ authState.user?.role ?? 'Guest' }}</strong>
+      </div>
+
+      <span class="toolbar-spacer"></span>
+
+      <div class="identity-block" *ngIf="authState.user as user">
+        <span>{{ user.email }}</span>
+        <button mat-stroked-button type="button" (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          Sign out
+        </button>
+      </div>
+    </mat-toolbar>
+
+    <main class="shell-main">
+      <router-outlet></router-outlet>
+    </main>
+  </mat-drawer-content>
+</mat-drawer-container>

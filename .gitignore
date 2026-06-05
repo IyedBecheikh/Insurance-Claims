@@ -1,0 +1,4 @@
+.idea/
+.env
+backend/target/
+frontend/node_modules/

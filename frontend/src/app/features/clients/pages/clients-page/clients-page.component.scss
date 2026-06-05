@@ -1,0 +1,49 @@
+.link-button {
+  border: none;
+  background: transparent;
+  padding: 0;
+  color: #1548a4;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.page-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(320px, 0.95fr);
+  gap: 16px;
+}
+
+.panel {
+  border-radius: 8px;
+  padding: 18px;
+}
+
+.loading-state {
+  display: grid;
+  place-items: center;
+  min-height: 220px;
+}
+
+h3 {
+  margin: 0 0 16px;
+  color: #172033;
+}
+
+form {
+  display: grid;
+  gap: 16px;
+}
+
+@media (max-width: 1200px) {
+  .page-grid,
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,31 @@
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.status-positive {
+  background: #d8f3dc;
+  color: #1b5e20;
+}
+
+.status-attention {
+  background: #fff0c2;
+  color: #8a5a00;
+}
+
+.status-negative {
+  background: #fde2e4;
+  color: #b00020;
+}
+
+.status-neutral {
+  background: #e9ecef;
+  color: #374151;
+}

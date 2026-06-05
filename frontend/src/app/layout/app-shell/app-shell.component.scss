@@ -1,0 +1,80 @@
+.shell-container {
+  min-height: 100vh;
+  background: #f5f7fb;
+}
+
+.shell-drawer {
+  width: 280px;
+  border-right: 1px solid #e6e8ee;
+  background: linear-gradient(180deg, #10233f 0%, #152d53 100%);
+  color: #f8fbff;
+  padding: 20px 16px;
+}
+
+.brand-block {
+  display: grid;
+  gap: 8px;
+  padding: 8px 8px 24px;
+}
+
+.brand-kicker {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #9bb2d1;
+  font-weight: 700;
+}
+
+.brand-block strong {
+  font-size: 24px;
+  line-height: 1.1;
+}
+
+.brand-copy {
+  color: #cbd7ea;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.active-link {
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.shell-toolbar {
+  height: 72px;
+  padding: 0 28px;
+  border-bottom: 1px solid #e6e8ee;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.toolbar-copy {
+  display: grid;
+}
+
+.eyebrow {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #667085;
+  font-weight: 700;
+}
+
+.toolbar-spacer {
+  flex: 1;
+}
+
+.identity-block {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #334155;
+  font-size: 14px;
+}
+
+.shell-main {
+  padding: 28px;
+}
+
+::ng-deep .shell-drawer .mdc-list-item__primary-text,
+::ng-deep .shell-drawer .mat-icon {
+  color: inherit;
+}

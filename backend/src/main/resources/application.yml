@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: insurance-claims-backend
+
+security:
+  jwt:
+    secret: ${JWT_SECRET:insurance-claims-development-secret-key-please-change}
+    expiration-ms: ${JWT_EXPIRATION_MS:3600000}

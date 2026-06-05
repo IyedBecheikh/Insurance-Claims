@@ -1,0 +1,62 @@
+.page-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(320px, 0.95fr);
+  gap: 16px;
+}
+
+.panel {
+  border-radius: 8px;
+  padding: 18px;
+}
+
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+h3 {
+  margin: 0;
+  color: #172033;
+}
+
+table {
+  width: 100%;
+}
+
+form,
+.detail-column {
+  display: grid;
+  gap: 16px;
+}
+
+.detail-grid {
+  margin: 0;
+  display: grid;
+  gap: 14px;
+}
+
+dt {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #667085;
+  font-weight: 700;
+}
+
+dd {
+  margin: 6px 0 0;
+  color: #172033;
+}
+
+.loading-state {
+  display: grid;
+  place-items: center;
+  min-height: 220px;
+}
+
+@media (max-width: 1200px) {
+  .page-grid {
+    grid-template-columns: 1fr;
+  }
+}

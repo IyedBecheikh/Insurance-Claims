@@ -1,0 +1,19 @@
+.section-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+h2 {
+  margin: 0;
+  font-size: 22px;
+  color: #162033;
+}
+
+p {
+  margin: 6px 0 0;
+  color: #667085;
+  font-size: 14px;
+}

@@ -1,0 +1,71 @@
+<app-section-header [title]="dashboardTitle" [subtitle]="dashboardSubtitle"></app-section-header>
+
+<div class="loading-state" *ngIf="loading">
+  <mat-spinner diameter="34"></mat-spinner>
+</div>
+
+<ng-container *ngIf="!loading">
+  <section class="stats-grid">
+    <app-stat-card
+      *ngIf="role === 'ADMIN'"
+      label="Users"
+      [value]="users.length.toString()"
+      hint="Total managed accounts"
+    />
+    <app-stat-card
+      *ngIf="role === 'ADMIN'"
+      label="Clients"
+      [value]="clients.length.toString()"
+      hint="Persisted client profiles"
+    />
+    <app-stat-card
+      *ngIf="role === 'ADMIN'"
+      label="Contracts"
+      [value]="contracts.length.toString()"
+      hint="Coverage agreements in the system"
+    />
+    <app-stat-card
+      label="Claims"
+      [value]="claims.length.toString()"
+      [hint]="role === 'CLIENT' ? 'Claims visible to your account' : 'Claims in the current queue'"
+    />
+    <app-stat-card
+      label="Under review"
+      [value]="claimsInReview.toString()"
+      hint="Claims awaiting decision"
+    />
+    <app-stat-card
+      label="Ready to act"
+      [value]="readyToActCount.toString()"
+      hint="Submitted or approved workflow steps"
+    />
+  </section>
+
+  <section class="dashboard-panels">
+    <mat-card class="panel">
+      <h3>Recent claims</h3>
+      <div class="claim-list" *ngIf="claims.length; else noClaims">
+        <div class="claim-row" *ngFor="let claim of claims | slice:0:6">
+          <div>
+            <strong>{{ claim.claimNumber }}</strong>
+            <span>{{ claim.medicalServiceDate }}</span>
+          </div>
+          <app-status-badge [value]="claim.status"></app-status-badge>
+        </div>
+      </div>
+      <ng-template #noClaims>
+        <p class="empty-copy">No claims available yet for this dashboard.</p>
+      </ng-template>
+    </mat-card>
+
+    <mat-card class="panel">
+      <h3>Workflow guidance</h3>
+      <ul class="guidance-list">
+        <li *ngIf="role === 'ADMIN'">Create users, client profiles, and contracts before claim intake expands.</li>
+        <li *ngIf="role === 'AGENT'">Move `SUBMITTED` claims into `UNDER_REVIEW` before approval decisions.</li>
+        <li *ngIf="role === 'CLIENT'">Claims need at least one document metadata entry before submission.</li>
+        <li>Use the role navigation on the left to move directly into the active workflow.</li>
+      </ul>
+    </mat-card>
+  </section>
+</ng-container>

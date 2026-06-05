@@ -1,0 +1,138 @@
+<app-section-header
+  title="My claims"
+  subtitle="Create draft claims, attach document metadata, and submit when ready."
+></app-section-header>
+
+<section class="page-grid">
+  <mat-card class="panel list-panel">
+    <h3>Claim list</h3>
+    <div class="loading-state" *ngIf="loading">
+      <mat-spinner diameter="32"></mat-spinner>
+    </div>
+
+    <table mat-table [dataSource]="claims" *ngIf="!loading">
+      <ng-container matColumnDef="claimNumber">
+        <th mat-header-cell *matHeaderCellDef>Claim</th>
+        <td mat-cell *matCellDef="let claim">
+          <button class="link-button" type="button" (click)="selectClaim(claim)">{{ claim.claimNumber }}</button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="medicalServiceDate">
+        <th mat-header-cell *matHeaderCellDef>Service date</th>
+        <td mat-cell *matCellDef="let claim">{{ claim.medicalServiceDate }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="claimAmount">
+        <th mat-header-cell *matHeaderCellDef>Amount</th>
+        <td mat-cell *matCellDef="let claim">{{ claim.claimAmount | currency }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let claim"><app-status-badge [value]="claim.status"></app-status-badge></td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="claimsColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: claimsColumns"></tr>
+    </table>
+  </mat-card>
+
+  <div class="detail-column">
+    <mat-card class="panel">
+      <h3>Create draft claim</h3>
+      <form [formGroup]="claimForm" (ngSubmit)="createClaim()">
+        <mat-form-field appearance="outline">
+          <mat-label>Contract</mat-label>
+          <mat-select formControlName="contractId">
+            <mat-option *ngFor="let contract of contracts" [value]="contract.id">
+              {{ contract.contractNumber }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="form-grid">
+          <mat-form-field appearance="outline">
+            <mat-label>Claim amount</mat-label>
+            <input matInput type="number" formControlName="claimAmount" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Service date</mat-label>
+            <input matInput type="date" formControlName="medicalServiceDate" />
+          </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Description</mat-label>
+          <input matInput formControlName="description" />
+        </mat-form-field>
+
+        <button mat-flat-button type="submit" [disabled]="savingClaim">Create draft</button>
+      </form>
+    </mat-card>
+
+    <mat-card class="panel" *ngIf="selectedClaim as claim">
+      <div class="claim-head">
+        <div>
+          <h3>{{ claim.claimNumber }}</h3>
+          <p>{{ claim.description || 'No description provided.' }}</p>
+        </div>
+        <app-status-badge [value]="claim.status"></app-status-badge>
+      </div>
+
+      <div class="meta-grid">
+        <span>Claim amount: {{ claim.claimAmount | currency }}</span>
+        <span>Reimbursement: {{ claim.reimbursementAmount ? (claim.reimbursementAmount | currency) : 'Pending' }}</span>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <div class="documents-block">
+        <h4>Document metadata</h4>
+        <div class="document-list" *ngIf="claim.documents.length; else noDocuments">
+          <div class="document-item" *ngFor="let document of claim.documents">
+            <strong>{{ document.fileName }}</strong>
+            <span>{{ document.filePath }}</span>
+          </div>
+        </div>
+        <ng-template #noDocuments>
+          <p class="empty-copy">No documents recorded yet.</p>
+        </ng-template>
+
+        <form [formGroup]="documentForm" (ngSubmit)="addDocument()" *ngIf="claim.status === 'DRAFT'">
+          <div class="form-grid">
+            <mat-form-field appearance="outline">
+              <mat-label>File name</mat-label>
+              <input matInput formControlName="fileName" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Content type</mat-label>
+              <input matInput formControlName="fileType" />
+            </mat-form-field>
+          </div>
+
+          <div class="form-grid">
+            <mat-form-field appearance="outline">
+              <mat-label>Storage path</mat-label>
+              <input matInput formControlName="filePath" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>File size</mat-label>
+              <input matInput type="number" formControlName="fileSize" />
+            </mat-form-field>
+          </div>
+
+          <div class="action-row">
+            <button mat-flat-button type="submit" [disabled]="savingDocument">Add document</button>
+            <button mat-stroked-button type="button" (click)="submitClaim()" [disabled]="claim.documents.length === 0">
+              Submit claim
+            </button>
+          </div>
+        </form>
+      </div>
+    </mat-card>
+  </div>
+</section>

@@ -1,0 +1,77 @@
+@use '@angular/material' as mat;
+
+html {
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$azure-palette,
+        tertiary: mat.$cyan-palette
+      ),
+      typography: Manrope,
+      density: -1
+    )
+  );
+}
+
+:root {
+  --app-surface: #f5f7fb;
+  --app-panel: #ffffff;
+  --app-border: #e5e7eb;
+  --app-text: #172033;
+  --app-muted: #667085;
+  --app-accent: #1548a4;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--app-surface);
+  color: var(--app-text);
+  font-family: 'Manrope', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button {
+  font-family: 'DM Sans', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.mat-mdc-card {
+  border-radius: 8px !important;
+}
+
+.mat-mdc-form-field {
+  width: 100%;
+}
+
+.mat-mdc-table {
+  background: transparent !important;
+}
+
+.mat-mdc-header-row,
+.mat-mdc-row {
+  min-height: 54px !important;
+}
+
+.mat-mdc-header-cell {
+  color: #5b6777 !important;
+  font-size: 12px !important;
+  text-transform: uppercase;
+}
+
+.snackbar-error .mdc-snackbar__surface {
+  background: #8f1d2c !important;
+  color: #fff !important;
+}

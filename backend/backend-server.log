@@ -1,0 +1,85 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------< com.iyed:insurance-claims-backend >------------------
+[INFO] Building insurance-claims-backend 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:4.0.6:run (default-cli) > test-compile @ insurance-claims-backend >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ insurance-claims-backend ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ insurance-claims-backend ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ insurance-claims-backend ---
+[INFO] Copying 1 resource from src\test\resources to target\test-classes
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ insurance-claims-backend ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] <<< spring-boot:4.0.6:run (default-cli) < test-compile @ insurance-claims-backend <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:4.0.6:run (default-cli) @ insurance-claims-backend ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.6)
+
+2026-06-05T17:30:17.306+01:00  INFO 32268 --- [insurance-claims-backend] [           main] c.i.i.InsuranceClaimsApplication         : Starting InsuranceClaimsApplication using Java 21.0.6 with PID 32268 (D:\Trabajo\Insurance Claims\backend\target\classes started by iyedm in D:\Trabajo\Insurance Claims\backend)
+2026-06-05T17:30:17.310+01:00  INFO 32268 --- [insurance-claims-backend] [           main] c.i.i.InsuranceClaimsApplication         : The following 1 profile is active: "test"
+2026-06-05T17:30:19.693+01:00  INFO 32268 --- [insurance-claims-backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-05T17:30:20.033+01:00  INFO 32268 --- [insurance-claims-backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 327 ms. Found 6 JPA repository interfaces.
+2026-06-05T17:30:21.034+01:00  INFO 32268 --- [insurance-claims-backend] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-06-05T17:30:21.061+01:00  INFO 32268 --- [insurance-claims-backend] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-06-05T17:30:21.063+01:00  INFO 32268 --- [insurance-claims-backend] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-06-05T17:30:21.135+01:00  INFO 32268 --- [insurance-claims-backend] [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 3770 ms
+2026-06-05T17:30:21.456+01:00  INFO 32268 --- [insurance-claims-backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-06-05T17:30:21.718+01:00  INFO 32268 --- [insurance-claims-backend] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:79812221-05cb-4caa-aa94-d46fbf8a6573 user=SA
+2026-06-05T17:30:21.721+01:00  INFO 32268 --- [insurance-claims-backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-06-05T17:30:21.785+01:00  INFO 32268 --- [insurance-claims-backend] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:mem:79812221-05cb-4caa-aa94-d46fbf8a6573 (H2 2.4)
+2026-06-05T17:30:21.790+01:00  WARN 32268 --- [insurance-claims-backend] [           main] o.f.c.internal.database.base.Database    : Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2026-06-05T17:30:21.825+01:00  INFO 32268 --- [insurance-claims-backend] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "PUBLIC"."flyway_schema_history" does not exist yet
+2026-06-05T17:30:21.828+01:00  INFO 32268 --- [insurance-claims-backend] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.020s)
+2026-06-05T17:30:21.838+01:00  INFO 32268 --- [insurance-claims-backend] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "PUBLIC"."flyway_schema_history" ...
+2026-06-05T17:30:21.875+01:00  INFO 32268 --- [insurance-claims-backend] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "PUBLIC": << Empty Schema >>
+2026-06-05T17:30:21.889+01:00  INFO 32268 --- [insurance-claims-backend] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1 - create core tables"
+2026-06-05T17:30:21.921+01:00  INFO 32268 --- [insurance-claims-backend] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "2 - seed default auth users"
+2026-06-05T17:30:21.932+01:00  INFO 32268 --- [insurance-claims-backend] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "PUBLIC", now at version v2 (execution time 00:00.025s)
+2026-06-05T17:30:22.032+01:00  INFO 32268 --- [insurance-claims-backend] [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-06-05T17:30:22.084+01:00  INFO 32268 --- [insurance-claims-backend] [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.12.Final
+2026-06-05T17:30:22.686+01:00  INFO 32268 --- [insurance-claims-backend] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-05T17:30:22.787+01:00  INFO 32268 --- [insurance-claims-backend] [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:h2:mem:79812221-05cb-4caa-aa94-d46fbf8a6573]
+	Database driver: H2 JDBC Driver
+	Database dialect: H2Dialect
+	Database version: 2.4.240
+	Default catalog/schema: 79812221-05CB-4CAA-AA94-D46FBF8A6573/PUBLIC
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: 100
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-05T17:30:24.024+01:00  INFO 32268 --- [insurance-claims-backend] [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-05T17:30:24.082+01:00  INFO 32268 --- [insurance-claims-backend] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-05T17:30:24.157+01:00  INFO 32268 --- [insurance-claims-backend] [           main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-06-05T17:30:24.540+01:00  INFO 32268 --- [insurance-claims-backend] [           main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-06-05T17:30:24.541+01:00  WARN 32268 --- [insurance-claims-backend] [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-06-05T17:30:24.836+01:00  WARN 32268 --- [insurance-claims-backend] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-05T17:30:25.789+01:00  INFO 32268 --- [insurance-claims-backend] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-06-05T17:30:25.797+01:00  INFO 32268 --- [insurance-claims-backend] [           main] c.i.i.InsuranceClaimsApplication         : Started InsuranceClaimsApplication in 9.003 seconds (process running for 9.581)
+2026-06-05T17:30:25.801+01:00  WARN 32268 --- [insurance-claims-backend] [           main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-06-05T17:30:25.802+01:00  WARN 32268 --- [insurance-claims-backend] [           main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-06-05T17:32:24.561+01:00  INFO 32268 --- [insurance-claims-backend] [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-05T17:32:24.562+01:00  INFO 32268 --- [insurance-claims-backend] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-06-05T17:32:24.564+01:00  INFO 32268 --- [insurance-claims-backend] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms

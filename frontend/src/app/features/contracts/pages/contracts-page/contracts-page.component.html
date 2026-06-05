@@ -1,0 +1,118 @@
+<app-section-header
+  title="Contracts"
+  subtitle="Maintain coverage agreements and explicit activate or suspend contract states."
+>
+  <button mat-stroked-button type="button" (click)="prepareCreate()">
+    <mat-icon>note_add</mat-icon>
+    New contract
+  </button>
+</app-section-header>
+
+<section class="page-grid">
+  <mat-card class="panel list-panel">
+    <h3>Contracts</h3>
+    <div class="loading-state" *ngIf="loading">
+      <mat-spinner diameter="32"></mat-spinner>
+    </div>
+
+    <table mat-table [dataSource]="contracts" *ngIf="!loading">
+      <ng-container matColumnDef="contractNumber">
+        <th mat-header-cell *matHeaderCellDef>Number</th>
+        <td mat-cell *matCellDef="let contract">
+          <button class="link-button" type="button" (click)="selectContract(contract)">
+            {{ contract.contractNumber }}
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="clientId">
+        <th mat-header-cell *matHeaderCellDef>Client</th>
+        <td mat-cell *matCellDef="let contract">{{ contract.clientId }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef>Type</th>
+        <td mat-cell *matCellDef="let contract">{{ contract.type }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let contract">
+          <app-status-badge [value]="contract.status"></app-status-badge>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let contract">
+          <button mat-icon-button type="button" (click)="changeStatus(contract, 'ACTIVE')" [disabled]="contract.status === 'ACTIVE'">
+            <mat-icon>play_circle</mat-icon>
+          </button>
+          <button mat-icon-button type="button" (click)="changeStatus(contract, 'SUSPENDED')" [disabled]="contract.status === 'SUSPENDED'">
+            <mat-icon>pause_circle</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </mat-card>
+
+  <mat-card class="panel">
+    <h3>{{ editMode ? 'Edit contract' : 'Create contract' }}</h3>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <mat-form-field appearance="outline">
+        <mat-label>Client</mat-label>
+        <mat-select formControlName="clientId">
+          <mat-option *ngFor="let client of clients" [value]="client.id">
+            {{ client.firstName }} {{ client.lastName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="form-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>Contract number</mat-label>
+          <input matInput formControlName="contractNumber" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Type</mat-label>
+          <mat-select formControlName="type">
+            <mat-option *ngFor="let type of typeOptions" [value]="type">{{ type }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="form-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>Start date</mat-label>
+          <input matInput type="date" formControlName="startDate" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>End date</mat-label>
+          <input matInput type="date" formControlName="endDate" />
+        </mat-form-field>
+      </div>
+
+      <div class="form-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>Coverage limit</mat-label>
+          <input matInput type="number" formControlName="coverageLimit" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Reimbursement rate</mat-label>
+          <input matInput type="number" step="0.01" formControlName="reimbursementRate" />
+        </mat-form-field>
+      </div>
+
+      <button mat-flat-button type="submit" [disabled]="saving">
+        {{ editMode ? 'Save changes' : 'Create contract' }}
+      </button>
+    </form>
+  </mat-card>
+</section>

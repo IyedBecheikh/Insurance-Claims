@@ -1,0 +1,97 @@
+<app-section-header
+  title="Users"
+  subtitle="Create accounts for admins, agents, and clients and manage account enablement."
+></app-section-header>
+
+<section class="page-grid">
+  <mat-card class="panel list-panel">
+    <div class="panel-head">
+      <h3>Account list</h3>
+      <span>{{ users.length }} total</span>
+    </div>
+
+    <div class="loading-state" *ngIf="loading">
+      <mat-spinner diameter="32"></mat-spinner>
+    </div>
+
+    <table mat-table [dataSource]="users" *ngIf="!loading">
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let user">{{ user.email }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="role">
+        <th mat-header-cell *matHeaderCellDef>Role</th>
+        <td mat-cell *matCellDef="let user">{{ user.role }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="enabled">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let user">
+          <app-status-badge [value]="user.enabled ? 'ACTIVE' : 'SUSPENDED'"></app-status-badge>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef>Created</th>
+        <td mat-cell *matCellDef="let user">{{ user.createdAt | date:'mediumDate' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let user">
+          <button mat-icon-button type="button" (click)="selectUser(user)" matTooltip="View details">
+            <mat-icon>visibility</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            type="button"
+            (click)="toggleEnabled(user)"
+            [matTooltip]="user.enabled ? 'Disable user' : 'Enable user'"
+          >
+            <mat-icon>{{ user.enabled ? 'person_off' : 'person_check' }}</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </mat-card>
+
+  <div class="detail-column">
+    <mat-card class="panel">
+      <h3>Create user</h3>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Role</mat-label>
+          <mat-select formControlName="role">
+            <mat-option *ngFor="let role of roleOptions" [value]="role">{{ role }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button mat-flat-button type="submit" [disabled]="saving">Create account</button>
+      </form>
+    </mat-card>
+
+    <mat-card class="panel" *ngIf="selectedUser as user">
+      <h3>Selected account</h3>
+      <dl class="detail-grid">
+        <div><dt>Email</dt><dd>{{ user.email }}</dd></div>
+        <div><dt>Role</dt><dd>{{ user.role }}</dd></div>
+        <div><dt>Enabled</dt><dd>{{ user.enabled ? 'Yes' : 'No' }}</dd></div>
+        <div><dt>Created</dt><dd>{{ user.createdAt | date:'medium' }}</dd></div>
+      </dl>
+    </mat-card>
+  </div>
+</section>

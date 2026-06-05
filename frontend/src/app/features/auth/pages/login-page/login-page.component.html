@@ -1,0 +1,55 @@
+<section class="login-page">
+  <div class="hero-panel">
+    <span class="hero-kicker">Enterprise workflow</span>
+    <h1>Insurance claims management for admins, agents, and clients.</h1>
+    <p>
+      Review claims, manage contracts, and keep reimbursement decisions traceable through one
+      operational console.
+    </p>
+
+    <div class="hero-grid">
+      <app-stat-card label="Users" value="3 roles" hint="Admin, agent, client" />
+      <app-stat-card label="Claims" value="6 states" hint="Draft through paid" />
+      <app-stat-card label="API" value="JWT" hint="Role-protected REST backend" />
+    </div>
+  </div>
+
+  <mat-card class="login-card">
+    <div class="card-header">
+      <span class="eyebrow">Secure access</span>
+      <h2>Sign in</h2>
+      <p>Use the seeded development users or any account created from the admin console.</p>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" type="email" />
+        <mat-error *ngIf="form.controls.email.invalid">A valid email is required.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" type="password" />
+        <mat-error *ngIf="form.controls.password.invalid">Password is required.</mat-error>
+      </mat-form-field>
+
+      <button mat-flat-button class="primary-action" type="submit" [disabled]="submitting">
+        <mat-icon *ngIf="!submitting">login</mat-icon>
+        <mat-spinner *ngIf="submitting" diameter="18"></mat-spinner>
+        Continue
+      </button>
+    </form>
+
+    <mat-divider></mat-divider>
+
+    <div class="seeded-users">
+      <strong>Seeded accounts</strong>
+      <div class="seed-list">
+        <span>admin@insurance.local</span>
+        <span>agent@insurance.local</span>
+        <span>client@insurance.local</span>
+      </div>
+    </div>
+  </mat-card>
+</section>

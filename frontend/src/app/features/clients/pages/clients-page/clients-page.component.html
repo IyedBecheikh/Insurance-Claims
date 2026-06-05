@@ -1,0 +1,98 @@
+<app-section-header
+  title="Clients"
+  subtitle="Create and maintain persisted client profiles linked to client-role users."
+>
+  <button mat-stroked-button type="button" (click)="prepareCreate()">
+    <mat-icon>person_add</mat-icon>
+    New client
+  </button>
+</app-section-header>
+
+<section class="page-grid">
+  <mat-card class="panel list-panel">
+    <h3>Client directory</h3>
+    <div class="loading-state" *ngIf="loading">
+      <mat-spinner diameter="32"></mat-spinner>
+    </div>
+
+    <table mat-table [dataSource]="clients" *ngIf="!loading">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let client">
+          <button class="link-button" type="button" (click)="selectClient(client)">
+            {{ client.firstName }} {{ client.lastName }}
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="nationalId">
+        <th mat-header-cell *matHeaderCellDef>National ID</th>
+        <td mat-cell *matCellDef="let client">{{ client.nationalId }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef>Phone</th>
+        <td mat-cell *matCellDef="let client">{{ client.phone }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="registrationDate">
+        <th mat-header-cell *matHeaderCellDef>Registered</th>
+        <td mat-cell *matCellDef="let client">{{ client.registrationDate | date:'mediumDate' }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </mat-card>
+
+  <mat-card class="panel">
+    <h3>{{ editMode ? 'Edit client' : 'Create client' }}</h3>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <mat-form-field appearance="outline" *ngIf="!editMode">
+        <mat-label>Linked user</mat-label>
+        <mat-select formControlName="userId">
+          <mat-option *ngFor="let user of users" [value]="user.id">{{ user.email }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="form-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>First name</mat-label>
+          <input matInput formControlName="firstName" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Last name</mat-label>
+          <input matInput formControlName="lastName" />
+        </mat-form-field>
+      </div>
+
+      <div class="form-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>Phone</mat-label>
+          <input matInput formControlName="phone" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Date of birth</mat-label>
+          <input matInput formControlName="dateOfBirth" type="date" />
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Address</mat-label>
+        <input matInput formControlName="address" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>National ID</mat-label>
+        <input matInput formControlName="nationalId" />
+      </mat-form-field>
+
+      <button mat-flat-button type="submit" [disabled]="saving">
+        {{ editMode ? 'Save changes' : 'Create client' }}
+      </button>
+    </form>
+  </mat-card>
+</section>
