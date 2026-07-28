@@ -1,121 +1,75 @@
+<div align="center">
+
 # Insurance Claims Management System
 
-Enterprise-style reference implementation of a health insurance claims platform built with Spring Boot, Angular, PostgreSQL-oriented schema management, JWT security, and end-to-end project documentation.
+<p>An enterprise-style reference implementation of a health-insurance claims workflow.</p>
 
-## Implemented scope
+<p>
+  <a href="https://github.com/IyedBecheikh/Insurance-Claims">Repository</a>
+  · <a href="https://github.com/IyedBecheikh/Insurance-Claims/issues">Issues</a>
+</p>
 
-### Backend
+</div>
 
-- Spring Boot 4 / Java 21 foundation
-- PostgreSQL configuration and Flyway migrations
-- JWT authentication and role-based authorization
-- admin APIs for users, clients, and contracts
-- claim workflow APIs for client submission and agent/admin review
-- Swagger / OpenAPI exposure
+## Table of Contents
 
-### Frontend
+- [About](#about)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Screenshots and Demo](#screenshots-and-demo)
+- [Getting Started](#getting-started)
+- [Usage](#usage)
+- [Roadmap](#roadmap)
+- [Contributing](#contributing)
+- [License](#license)
 
-- Angular 20 + Angular Material application shell
-- role-aware navigation and route protection
-- login screen
-- admin dashboards and management screens for users, clients, and contracts
-- client claim creation, document-metadata entry, and submission screens
-- reviewer claim queue and decision screens
+## About
 
-## Roles
+An enterprise-style reference implementation of a health-insurance claims workflow.
 
-- `ADMIN`: manages users, clients, contracts, and claim oversight
-- `AGENT`: reviews submitted claims and records workflow decisions
-- `CLIENT`: creates, tracks, and submits personal claims
+**Status:** Public reference implementation; verify local environment and integration behavior before production use.
 
-## Screenshots
+## Features
 
-### Login
+- Review `app-spec.md` and the service-specific instructions first.
+- The repository includes `docker-compose.yml`, a Spring Boot backend, and an Angular frontend; use those project folders with their native build tools.
+- Do not commit credentials or production connection strings.
 
-![Login](docs/assets/ui-login.png)
+## Tech Stack
 
-### Admin dashboard
+- Role-based ADMIN, AGENT, and CLIENT workflows`n- Spring Boot APIs for users, clients, contracts, and claims`n- JWT authentication and authorization`n- Flyway migration path for PostgreSQL-oriented storage`n- Angular Material application shell and reviewer queues`n- Swagger/OpenAPI exposure and Docker Compose support
 
-![Admin dashboard](docs/assets/ui-admin-dashboard.png)
+## Screenshots and Demo
 
-### User management
+See [LICENSE](LICENSE) for the repository license.
 
-![Users](docs/assets/ui-users-page.png)
+## Getting Started
 
-### Contract management
+Clients submit and track claims. Agents review submitted claims and record workflow decisions. Admins manage users, clients, contracts, and overall claim oversight.
 
-![Contracts](docs/assets/ui-contracts-page.png)
+## Usage
 
-### Client claims
+Add a concise reproducible local setup and seeded demo data Document backend/frontend test commands and API contract examples Add production hardening guidance before treating the project as deployable
 
-![Client claims](docs/assets/ui-client-claims.png)
+## Roadmap
 
-### Reviewer queue
+- [ ] Screenshots and UI assets are stored under `docs/assets/`; the source README also documents the implemented surface.
 
-![Reviewer claims](docs/assets/ui-reviewer-claims.png)
+## Contributing
 
-## Repository structure
+This is a focused project maintained by Iyed Becheikh. Issues and pull requests are welcome when they include a clear problem statement, reproduction details, or a focused improvement proposal.
 
-```text
-backend/   Spring Boot backend
-frontend/  Angular frontend
-docs/      Architecture, API, security, testing, and implementation notes
-```
+## License
 
-## Local development
 
-### Backend
 
-Backend verification:
+## Contact
 
-```powershell
-cd backend
-.\mvnw.cmd test
-```
+Maintainer: [Iyed Becheikh](https://github.com/IyedBecheikh)
 
-For local UI exploration without PostgreSQL, the current frontend phase was verified against the backend running on the H2-backed `test` profile:
+Project: [https://github.com/IyedBecheikh/Insurance-Claims](https://github.com/IyedBecheikh/Insurance-Claims)
 
-```powershell
-cd backend
-.\mvnw.cmd spring-boot:run -Dspring-boot.run.profiles=test -Dspring-boot.run.useTestClasspath=true
-```
+## Acknowledgements
 
-### Frontend
-
-```powershell
-cd frontend
-npm install
-npm start
-```
-
-The frontend dev server uses `proxy.conf.json` so browser requests to `/api` are forwarded to `http://localhost:8080`.
-
-## Frontend verification
-
-```powershell
-cd frontend
-npx ng test --watch false --browsers ChromeHeadless --progress=false
-npm run build
-```
-
-## Current constraints
-
-- document handling stores metadata only; binary upload is not implemented yet
-- Docker Compose is still a placeholder
-- CI/CD workflow files are not implemented yet
-
-## Documentation map
-
-- `docs/05-database-design.md`
-- `docs/06-api-documentation.md`
-- `docs/07-security-design.md`
-- `docs/08-frontend-architecture.md`
-- `docs/09-backend-architecture.md`
-- `docs/10-testing-strategy.md`
-- `docs/14-implementation-notes.md`
-- `docs/Repo_Current_State.md`
-
-## Next recommended phase
-
-- Docker and local runtime packaging
-- CI/CD pipeline documentation and workflow automation
+- [Awesome README Template](https://github.com/Louis3797/awesome-readme-template)
+- The open-source libraries and platform documentation referenced by the project.
