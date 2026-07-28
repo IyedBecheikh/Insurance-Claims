@@ -1,75 +1,46 @@
-<div align="center">
-
 # Insurance Claims Management System
 
-<p>An enterprise-style reference implementation of a health-insurance claims workflow.</p>
+An enterprise-style reference implementation of a health-insurance claims workflow. It separates client submission, agent review, and administrative management into a Spring Boot API and Angular application.
 
-<p>
-  <a href="https://github.com/IyedBecheikh/Insurance-Claims">Repository</a>
-  · <a href="https://github.com/IyedBecheikh/Insurance-Claims/issues">Issues</a>
-</p>
+> Status: reference implementation. Review security, deployment, and integration settings before using it in production.
 
-</div>
+## Highlights
 
-## Table of Contents
+- JWT authentication and role-based access for `ADMIN`, `AGENT`, and `CLIENT`
+- Claim submission, review, contracts, clients, and user-management workflows
+- Spring Boot 4 / Java 21 backend with PostgreSQL-oriented Flyway migrations
+- Angular 20 / Angular Material frontend
+- Docker Compose, Swagger/OpenAPI, and project documentation
 
-- [About](#about)
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Screenshots and Demo](#screenshots-and-demo)
-- [Getting Started](#getting-started)
-- [Usage](#usage)
-- [Roadmap](#roadmap)
-- [Contributing](#contributing)
-- [License](#license)
+## Screenshots
 
-## About
+![Login screen](docs/assets/ui-login.png)
 
-An enterprise-style reference implementation of a health-insurance claims workflow.
+![Admin dashboard](docs/assets/ui-admin-dashboard.png)
 
-**Status:** Public reference implementation; verify local environment and integration behavior before production use.
+## Run locally
 
-## Features
+The repository contains `docker-compose.yml`, a `backend/` Spring Boot service, and a `frontend/` Angular application.
 
-- Review `app-spec.md` and the service-specific instructions first.
-- The repository includes `docker-compose.yml`, a Spring Boot backend, and an Angular frontend; use those project folders with their native build tools.
-- Do not commit credentials or production connection strings.
+```bash
+docker compose up --build
+```
 
-## Tech Stack
+For component-level development, configure the database and application settings first, then run the backend from `backend/` with Maven and the frontend from `frontend/` with:
 
-- Role-based ADMIN, AGENT, and CLIENT workflows`n- Spring Boot APIs for users, clients, contracts, and claims`n- JWT authentication and authorization`n- Flyway migration path for PostgreSQL-oriented storage`n- Angular Material application shell and reviewer queues`n- Swagger/OpenAPI exposure and Docker Compose support
+```bash
+npm install
+npm start
+```
 
-## Screenshots and Demo
+See [app-spec.md](app-spec.md) for the implemented workflow and API scope.
 
-See [LICENSE](LICENSE) for the repository license.
+## Roles
 
-## Getting Started
-
-Clients submit and track claims. Agents review submitted claims and record workflow decisions. Admins manage users, clients, contracts, and overall claim oversight.
-
-## Usage
-
-Add a concise reproducible local setup and seeded demo data Document backend/frontend test commands and API contract examples Add production hardening guidance before treating the project as deployable
-
-## Roadmap
-
-- [ ] Screenshots and UI assets are stored under `docs/assets/`; the source README also documents the implemented surface.
-
-## Contributing
-
-This is a focused project maintained by Iyed Becheikh. Issues and pull requests are welcome when they include a clear problem statement, reproduction details, or a focused improvement proposal.
+- `CLIENT` submits and tracks claims.
+- `AGENT` reviews submitted claims and records decisions.
+- `ADMIN` manages users, clients, contracts, and claim oversight.
 
 ## License
 
-
-
-## Contact
-
-Maintainer: [Iyed Becheikh](https://github.com/IyedBecheikh)
-
-Project: [https://github.com/IyedBecheikh/Insurance-Claims](https://github.com/IyedBecheikh/Insurance-Claims)
-
-## Acknowledgements
-
-- [Awesome README Template](https://github.com/Louis3797/awesome-readme-template)
-- The open-source libraries and platform documentation referenced by the project.
+See [LICENSE](LICENSE).
